@@ -6,7 +6,9 @@ using System.Security.Authentication;
 
 namespace MessageBroker.Services;
 
-
+/// <summary>
+/// Implements the IRabbitWireService interface to provide functionality for sending messages to RabbitMQ queues using MassTransit. This service manages the bus control instance and allows for sending messages to specific queues or using conventions to determine the destination address. The service is designed to be used in applications that require integration with RabbitMQ for message-based communication, providing a simple API for sending messages while abstracting away the underlying bus configuration and management details. 
+/// </summary>
 public class RabbitWireService : IRabbitWireService
 {
     public Guid InstanceId { get; }
@@ -29,8 +31,6 @@ public class RabbitWireService : IRabbitWireService
                     hostConfigurator.UseSsl(ssl => ssl.Protocol = SslProtocols.Tls12);
             });
 
-
-            // Se houver "extraConfig", chamamos para permitir configurações adicionais.
             extraConfig?.Invoke(cfg);
         });
     }
