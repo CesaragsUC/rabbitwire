@@ -125,6 +125,8 @@ public static class RabbitWireServiceExtensions
     {
         var eventName = consumerType.Name.Replace("Consumer", ".event");
 
+        Log.Information($"The queue name for {consumerType.Name} is {rabbitMqConfig.Prefix}.{eventName.ToLower()}.v1");
+
         return new RabbitWireEndpointConfig
         {
             QueueName = $"{rabbitMqConfig.Prefix}.{eventName.ToLower()}.v1",
